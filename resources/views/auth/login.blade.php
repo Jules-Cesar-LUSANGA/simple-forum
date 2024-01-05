@@ -3,7 +3,7 @@
         @csrf
         <div>
             <x-form-label for='email'>Email</x-form-label>
-            <x-form-input type='email' name='email' id='email'/>
+            <x-form-input type='email' name='email' id='email' old-value='email'/>
             <x-input-error name='email'></x-input-error>
         </div>
         <div>

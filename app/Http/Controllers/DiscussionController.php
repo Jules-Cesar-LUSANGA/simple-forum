@@ -52,7 +52,7 @@ class DiscussionController extends Controller
      */
     public function show(Discussion $discussion)
     {
-        $discussion->load(['user','category']);
+        $discussion->load(['user','category', 'comments',]);
 
         return view('discussions.show', compact('discussion'));
     }
@@ -96,4 +96,12 @@ class DiscussionController extends Controller
         return Category::all();
     }
 
+    public function close(Discussion $discussion)
+    {
+        // Set a discussion solved
+        $discussion->resolved = true;
+        $discussion->save();
+
+        return redirect()->back();
+    }
 }

@@ -29,6 +29,6 @@ class RegisterController extends Controller
 
         session()->regenerate();
 
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('discussions.index'));
     }
 }
