@@ -42,7 +42,7 @@
     <div id="comments" style="background-color: rgb(198, 182, 182)">
         <div>
             <h4>Comments</h4>
-            @forelse ($discussion->comments->load(['user']) as $comment)
+            @forelse ($discussion->comments as $comment)
                 <article>
                     <p>
 

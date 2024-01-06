@@ -8,6 +8,14 @@
 	@livewireStyles()
 </head>
 <body>
+
+	@auth
+		<form action="{{ route('logout') }}" method="post">
+			@csrf
+			<x-submit-button value='logout'></x-submit-button>
+		</form>
+	@endauth
+	
 	<main>
 		{{ $slot }}
 	</main>

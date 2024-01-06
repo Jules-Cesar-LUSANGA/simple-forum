@@ -12,6 +12,7 @@
                 <p>
                     <strong>{{ $discussion->title }} [{{ $discussion->created_at->diffForHumans() }}] </strong>
                 </p>
+                <strong>Comments : {{ $discussion->comments->count() }}</strong>
                 <p>
                     {{ $discussion->resolved ? 'Resolved' : 'Not resolved' }}
                 </p>

@@ -20,7 +20,6 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             
-            // session()->invalidate();
             session()->regenerate();
 
             // Rédiriger l'utilisateur sur la page qu'il a demandée, ou sur la home

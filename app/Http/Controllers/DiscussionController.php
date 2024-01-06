@@ -17,7 +17,7 @@ class DiscussionController extends Controller
      */
     public function index()
     {
-        $discussions = Discussion::with(['user', 'category'])->orderByDesc('id')->paginate(10);
+        $discussions = Discussion::with(['user', 'category','comments'])->orderByDesc('id')->paginate(10);
 
         return view('discussions.index', compact('discussions'));
     }
@@ -44,7 +44,7 @@ class DiscussionController extends Controller
 
         $discussion = Discussion::create($data);
        
-        return to_route('discussions.show', $discussion->id);
+        return to_route('discussions.show', $discussion->id)->with('success', 'Discussion created successfuly');
     }
 
     /**
@@ -52,8 +52,8 @@ class DiscussionController extends Controller
      */
     public function show(Discussion $discussion)
     {
-        $discussion->load(['user','category', 'comments',]);
-
+        $discussion->load(['user','category', 'comments', 'comments.user']);
+        // dd($discussion->comments);
         return view('discussions.show', compact('discussion'));
     }
 

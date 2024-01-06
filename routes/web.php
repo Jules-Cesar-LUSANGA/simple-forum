@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DiscussionController;
@@ -21,9 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/home','home')->name('home');
-
 Route::middleware('auth')->group(function(){
+
+    Route::view('/home','home')->name('home');
 
     Route::resource('discussions', DiscussionController::class);
     Route::post('/discussions/{discussion}/close', 'App\Http\Controllers\DiscussionController@close')->name('discussions.close');
@@ -39,6 +40,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/{comment}', 'edit')->name('edit');
         Route::put('/{comment}', 'update')->name('update');
         Route::delete('/{comment}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(UserController::class)->prefix('/users')->name('users.')->group(function(){
+        Route::get('/','index')->name('index');
     });
 });
 
